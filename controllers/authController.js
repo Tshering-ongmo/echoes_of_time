@@ -14,11 +14,20 @@ if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
 }
 
 // Validate and set BASE_URL
-const BASE_URL = process.env.BASE_URL || `http://localhost:${process.env.PORT || 2004}`;
-if (!BASE_URL.startsWith('http')) {
-  throw new Error('❌ BASE_URL must start with http:// or https://');
+// userController.js
+
+// Use BASE_URL from environment or fallback to localhost
+const BASE_URL = process.env.BASE_URL;
+
+if (!BASE_URL || !BASE_URL.startsWith('http')) {
+  throw new Error('❌ BASE_URL is missing or invalid. Please check your environment variables.');
 }
+
 console.log(`ℹ️ Using BASE_URL: ${BASE_URL}`);
+
+// Then use BASE_URL wherever needed to construct links, for example:
+const confirmationLink = `${BASE_URL}/api/users/verify/${token}`;
+
 
 // Helper functions
 const isPasswordComplex = (password) => {
