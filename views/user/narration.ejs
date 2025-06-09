@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Explore Bhutan - Land of the Thunder Dragon</title>
+      <link rel="stylesheet" href="/css/styles.css">
+      <link rel="stylesheet" href="/css/home.css">
+      <link rel="stylesheet" href="/css/narration.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+      <style>
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .text-muted {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .story-content {
+            color: #34495e;
+            line-height: 1.8;
+            flex-grow: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-content.collapsed {
+            max-height: 150px; /* Show approximately 5-6 lines */
+        }
+
+        .story-content.collapsed::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+        }
+
+        .story-content p {
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            color: #3498db;
+            text-decoration: none;
+            margin-top: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .read-more:hover {
+            color: #2980b9;
+        }
+
+        .read-more i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more:hover i {
+            transform: translateY(2px);
+        }
+
+        .read-more.expanded i {
+            transform: rotate(180deg);
+        }
+
+        .read-more.expanded:hover i {
+            transform: rotate(180deg) translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            .row {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .card-img-top {
+                height: 200px;
+            }
+
+            .card-body {
+                padding: 20px;
+            }
+
+            .story-content.collapsed {
+                max-height: 120px; /* Slightly shorter on mobile */
+            }
+        }
+
+        .page-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .page-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: #3498db;
+        }
+      </style>
+  </head>
+  <body>
+  <%- include('partials/header') %>
+  <div class="container">
+    <h1 class="page-title">Stories from the Land of the Thunder Dragon</h1>
+    
+    <div class="row">
+      <% stories.forEach(story => { %>
+        <div class="card">
+          <% if (story.images && story.images.length > 0) { %>
+            <img src="/uploads/stories/<%= story.images[0] %>" class="card-img-top" alt="<%= story.title %>">
+          <% } %>
+          
+          <div class="card-body">
+            <h5 class="card-title"><%= story.title %></h5>
+            <p class="text-muted"><%= story.formattedDate %></p>
+            
+            <div class="story-content collapsed" id="content-<%= story.id %>">
+              <% const paragraphs = story.content.split('\n'); %>
+              <% paragraphs.forEach(paragraph => { %>
+                <p><%= paragraph %></p>
+              <% }); %>
+            </div>
+            
+            <a class="read-more" onclick="toggleContent('<%= story.id %>')">
+              Read More <i class="fas fa-chevron-down"></i>
+            </a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <%- include('partials/footer') %>
+
+  <script>
+    function toggleContent(storyId) {
+      const content = document.getElementById(`content-${storyId}`);
+      const button = content.nextElementSibling;
+      
+      if (content.classList.contains('collapsed')) {
+        // Expanding
+        content.classList.remove('collapsed');
+        button.innerHTML = 'Read Less <i class="fas fa-chevron-up"></i>';
+        button.classList.add('expanded');
+      } else {
+        // Collapsing
+        content.classList.add('collapsed');
+        button.innerHTML = 'Read More <i class="fas fa-chevron-down"></i>';
+        button.classList.remove('expanded');
+        
+        // Smooth scroll back to card top if content is out of view
+        content.parentElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  </script>
+  <script src="/js/script.js"></script>
+
+  </body>
+</html>

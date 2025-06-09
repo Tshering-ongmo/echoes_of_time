@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Explore Bhutan - Land of the Thunder Dragon</title>
+      <link rel="stylesheet" href="/css/styles.css">
+      <link rel="stylesheet" href="/css/about.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  </head>
+<body>
+    <%- include('partials/header', { title: 'About Echoes of Time' }) %>
+
+    <main class="about-container">
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <div class="hero-content">
+                <h1>Our Story</h1>
+                <p>Preserving the rich cultural heritage of Bhutan through digital storytelling</p>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission-section">
+            <div class="container">
+                <h2>Our Mission</h2>
+                <div class="mission-grid">
+                    <div class="mission-card">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Preserve Stories</h3>
+                        <p>Documenting Bhutanese folklore, traditions, and personal narratives for future generations.</p>
+                    </div>
+                    <div class="mission-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Connect People</h3>
+                        <p>Creating bridges between Bhutanese communities and the global audience.</p>
+                    </div>
+                    <div class="mission-card">
+                        <i class="fas fa-mountain"></i>
+                        <h3>Celebrate Culture</h3>
+                        <p>Showcasing the unique beauty of Bhutan's traditions and landscapes.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <h2>Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-image" style="background-image: url('/images/myself.jpg');"></div>
+                        <h3>Tshering Wangmo</h3>
+                        <p>Founder & Story Curator</p>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/tshering.wangmo.50303"><i class="fab fa-facebook"></i></a>
+                            <a href="https://www.instagram.com/tshering_wangmo/"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/tshering-wangmo-2000/"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image" style="background-image: url('https://media.craiyon.com/2025-04-13/0QSSgVvZTX-cN3EzZ2iegw.webp');"></div>
+                        <h3>Sangay Yuden</h3>
+                        <p>Digital Archivist</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <div class="member-image" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRyWIttQK34w_Iyvnj61kurfSbgP4IREaIuXw&s');"></div>
+                        <h3>Pema Lhaden</h3>
+                        <p>Community Outreach</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bhutan Info Section -->
+        <section class="bhutan-info">
+            <div class="container">
+                <div class="info-content">
+                    <h2>About Bhutan</h2>
+                    <p>Bhutan, the Land of the Thunder Dragon, is a small Himalayan kingdom known for its stunning landscapes, rich Buddhist culture, and unique philosophy of Gross National Happiness. Our stories capture the essence of this magical kingdom.</p>
+                    <div class="bhutan-stats">
+                        <div class="stat-item">
+                            <span>800,000+</span>
+                            <p>Population</p>
+                        </div>
+                        <div class="stat-item">
+                            <span>72%</span>
+                            <p>Forest Coverage</p>
+                        </div>
+                        <div class="stat-item">
+                            <span>1971</span>
+                            <p>Year of Modernization</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bhutan-image">
+                    <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhpfMN3cOuEoMi9hHfKZQUmHMt2krtXRR5Z8ooMaaxTWMFVAZmy1QPyjeHgNdpABa-As8gJjkkj-NDMW9WbzqDnTdXFfLMxwWvHH0ZqMS05T5_f5fGwfYNNeBtst5uBMDu5yy9eCvShdXQy/w1200-h630-p-k-no-nu/bhutan+web+jpeg+copy.jpg" alt="Bhutan Map">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+    <script src="/js/script.js"></script>
+</body>
+</html>

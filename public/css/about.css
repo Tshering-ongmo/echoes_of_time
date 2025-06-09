@@ -1,0 +1,220 @@
+/* About Page Styles */
+.about-container {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Hero Section */
+.about-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://www.experiencetravelgroup.com/reposit/20190429102856.jpg') center/cover no-repeat;
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 3rem;
+}
+
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Mission Section */
+.mission-section {
+    padding: 6rem 10%;
+    background-color: #f8f9fa;
+}
+
+.mission-section h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2c3e50;
+}
+
+.mission-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.mission-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.mission-card:hover {
+    transform: translateY(-10px);
+}
+
+.mission-card i {
+    font-size: 2.5rem;
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.mission-card h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+/* Team Section */
+.team-section {
+    padding: 6rem 10%;
+}
+
+.team-section h2 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: #2c3e50;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.team-member {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.member-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    background-size: cover;
+    background-position: center;
+    border: 3px solid #3498db;
+}
+
+.team-member h3 {
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.team-member p {
+    color: #6c757d;
+    margin-bottom: 1rem;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.social-links a {
+    color: #3498db;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #2874a6;
+}
+
+/* Bhutan Info Section */
+.bhutan-info {
+    padding: 6rem 10%;
+    background-color: #f8f9fa;
+}
+
+.bhutan-info .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.bhutan-info h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #2c3e50;
+}
+
+.bhutan-info p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.bhutan-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-item {
+    text-align: center;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.stat-item span {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #3498db;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.bhutan-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .bhutan-info .container {
+        grid-template-columns: 1fr;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+    
+    .bhutan-stats {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Back to Home Button (from previous example) */
+.back-home-container {
+    margin: 3rem auto;
+    text-align: center;
+}

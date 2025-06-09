@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echoes of Time - Connect with Bhutan Trough Stories</title>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/landing.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo">Echoes <span>of Time</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#highlights">Highlights</a></li>
+                <li><a href="#about">About Us</a></li>
+            </ul>
+        </nav>
+        
+        <div class="hero-content">
+            <h1>Echoes of Time</h1>
+            <p>Connect with Bhutan through stories</p>
+            <div>
+                <a href="/signup" class="btn">Signup Now</a>
+                <a href="/login" class="btn btn-secondary">Login</a>
+            </div>
+        </div>
+    </header>
+    
+    <section id="highlights" >
+        <div class="section-title">
+            <h2>Bhutan Highlights</h2>
+        </div>
+
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <div class="card-img">
+                    <img src="https://cdn.audleytravel.com/3526/2522/79/15978913-taktsang-monastery.jpg" alt="Tiger's Nest Monastery">
+                </div>
+                <div class="card-content">
+                    <h3>Tiger's Nest Monastery</h3>
+                    <p>Perched on a cliff 3,000 feet above the Paro Valley, this sacred monastery is Bhutan's most iconic landmark.</p>
+                </div>
+            </div>
+            
+            <div class="highlight-card">
+                <div class="card-img">
+                    <img src="https://www.tripointholidays.com/images/international/bhutan/exp_bhutan.jpg" alt="Punakha Dzong">
+                </div>
+                <div class="card-content">
+                    <h3>Punakha Dzong</h3>
+                    <p>The most beautiful dzong in Bhutan, located at the confluence of two rivers with stunning architecture.</p>
+                </div>
+            </div>
+            
+            <div class="highlight-card">
+                <div class="card-img">
+                    <img src="https://th.bing.com/th/id/OIP.MOoK4F7tcQ5yB6f-w8kQvQHaEK?rs=1&pid=ImgDetMain" alt="Bhutanese Festival">
+                </div>
+                <div class="card-content">
+                    <h3>Colorful Festivals</h3>
+                    <p>Experience the vibrant Tshechu festivals with masked dances and religious performances.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="about">
+        <div class="section-title">
+            <h2>About Us</h2>
+        </div>
+        
+        <div class="about-container">
+            <div class="about-img">
+                <img src="https://tourbhutan.travel/wp-content/uploads/2023/11/1_Dochula_Pass-1.jpg" alt="Bhutanese Guide">
+            </div>
+            <div class="about-content">
+                <h3>Echoes of Time</h3>
+                <p>Echoes of Time is a platform that connects people with Bhutan through stories. We are a team of storytellers who are passionate about sharing the stories of Bhutan with the world.</p>
+                <p>With its stunning monasteries, dramatic landscapes, and warm-hearted people, Bhutan remains one of the world's most exclusive travel destinations, committed to high-value, low-impact tourism.</p>
+                <div class="stats">
+                    <div class="stat-item">
+                        <h4>10+</h4>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>20+</h4>
+                        <p>Wonderful Stories</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>90%</h4>
+                        <p>Authentic</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <footer>
+        <p>The Land of the Thunder Dragon awaits you</p>
+        <p>&copy; 2023 Echoes of Time. All rights reserved.</p>
+        
+    </footer>
+    <script src="/js/script.js"></script>
+    <script>
+        // Back to Top functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

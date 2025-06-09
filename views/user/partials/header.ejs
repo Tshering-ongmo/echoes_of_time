@@ -1,0 +1,204 @@
+<!-- Navigation -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <nav class="navbar">
+        <a href="#" class="logo">Echoes <span>of Time</span></a>
+        <ul class="nav-links">
+            <li><a href="/user/dashboard">Home</a></li>
+            <li><a href="/user/narration">Narration</a></li>
+            <li><a href="/user/about">About</a></li>
+            <li><a href="/user/testimonials">Testimonials</a></li>
+            <li><button onclick="showLogoutModal()" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+            </button></li>
+        </ul>
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!--logout modal-->
+    <div id="logoutModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-door-open modal-icon"></i>
+                <h3>Ready to Leave?</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to logout?</p>
+            </div>
+            <div class="modal-footer">
+                <form action="/logout" method="POST">
+                    <button type="submit" class="modal-btn confirm-btn">
+                        <i class="fas fa-check-circle"></i> Continue
+                    </button>
+                </form>
+                <button onclick="hideLogoutModal()" class="modal-btn cancel-btn">
+                    <i class="fas fa-times-circle"></i> Cancel
+                </button>
+            </div>
+            <span class="close" onclick="hideLogoutModal()">&times;</span>
+        </div>
+    </div>
+
+    <style>
+        .logout-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font: inherit;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 15% auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-icon {
+            font-size: 3rem;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .modal-body {
+            margin-bottom: 25px;
+            color: #666;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .modal-footer form {
+            margin: 0;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .confirm-btn {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+        }
+
+        .confirm-btn:hover {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+        }
+
+        .cancel-btn {
+            background: linear-gradient(135deg, #6bde99, #49ef60);
+            color: #000;
+        }
+
+        .cancel-btn:hover {
+            background: linear-gradient(135deg, #49ef60, #6bde99);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(127, 140, 141, 0.3);
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover {
+            color: #e74c3c;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .modal-content {
+            animation: slideIn 0.3s ease-out;
+        }
+        
+    </style>
+    <script>
+        function showLogoutModal() {
+            document.getElementById('logoutModal').style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+    
+        function hideLogoutModal() {
+            document.getElementById('logoutModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+    
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('logoutModal');
+            if (event.target == modal) {
+                hideLogoutModal();
+            }
+        }
+
+        // Close modal when pressing Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                hideLogoutModal();
+            }
+        });
+    </script>

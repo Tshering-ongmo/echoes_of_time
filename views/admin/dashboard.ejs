@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/admin-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <main class="main-content">
+    <div class="admin-container">
+      <%- include('component/header') %>
+  
+      <main class="main-content">
+        <h1>Welcome Admin 👋</h1>
+        <h2>Pending Testimonials</h2>
+        <% if (pendingTestimonials.length === 0) { %>
+          <p>No pending testimonials.</p>
+        <% } else { %>
+          <% pendingTestimonials.forEach(t => { %>
+            <div class="testimonial-card">
+              <p><strong><%= t.user_name %>:</strong> <%= t.content %></p>
+              <form action="/admin/approveTestimonial/<%= t.id %>" method="POST" style="display:inline;">
+                <button type="submit">Approve</button>
+              </form>
+              <form action="/admin/deleteTestimonial/<%= t.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="delete">Delete</button>
+              </form>
+            </div>
+          <% }); %>
+        <% } %>
+      </main>
+    </div>
+  </main>
+</body>
+</html>
