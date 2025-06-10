@@ -135,7 +135,7 @@ const postSignup = async (req, res) => {
       [name, normalizeEmail(email), hashedPassword, verificationToken]
     );
 
-    const verificationLink = `${BASE_URL}/verify-email?token=${verificationToken}`;
+    const verificationLink = `https://echoes-of-time-xksc.onrender.com/verify-email?token=${verificationToken}`;
     console.log('Debug - Verification Link:', verificationLink);
     await sendEmail({
       from: `"Echoes of Time" <${process.env.EMAIL_USER}>`,
