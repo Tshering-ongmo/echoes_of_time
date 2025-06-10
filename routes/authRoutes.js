@@ -14,6 +14,7 @@ router.post('/signup', authController.postSignup);
 // Email verification
 router.get('/verify-email', authController.verifyEmail);
 
+
 // Login
 router.get('/login', authController.getLogin);
 router.post('/login', authController.postLogin);

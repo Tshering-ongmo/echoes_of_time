@@ -10,7 +10,6 @@ const { createTestimonialsTable } = require('./Models/testimonialModel');
 const methodOverride = require('method-override');
 
 const app = express();
-const PORT = process.env.PORT || 2004;
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -62,6 +61,7 @@ createStoryTable();
 createTestimonialsTable();
 
 // Server
+const PORT = process.env.PORT || 2004;
 app.listen(PORT, () => {
   //console.log(`Server running at http://localhost:${PORT}`);
   console.log(`✅ Server running on port ${PORT}`);

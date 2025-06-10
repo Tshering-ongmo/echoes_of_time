@@ -14,20 +14,11 @@ if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
 }
 
 // Validate and set BASE_URL
-// userController.js
-
-// Use BASE_URL from environment or fallback to localhost
-const BASE_URL = process.env.BASE_URL;
-
-if (!BASE_URL || !BASE_URL.startsWith('http')) {
-  throw new Error('❌ BASE_URL is missing or invalid. Please check your environment variables.');
+const BASE_URL = process.env.BASE_URL || `http://localhost:${process.env.PORT || 2004}`;
+if (!BASE_URL.startsWith('http')) {
+  throw new Error('❌ BASE_URL must start with http:// or https://');
 }
-
 console.log(`ℹ️ Using BASE_URL: ${BASE_URL}`);
-
-// Then use BASE_URL wherever needed to construct links, for example:
-const confirmationLink = `${BASE_URL}/api/users/verify/${token}`;
-
 
 // Helper functions
 const isPasswordComplex = (password) => {
@@ -46,16 +37,16 @@ const isPasswordComplex = (password) => {
 
 const normalizeEmail = (email) => email.toLowerCase().trim();
 
-// Email transporter with retry logic
+// Email transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   pool: true,
   auth: {
     user: process.env.EMAIL_USER,
     pass: process.env.EMAIL_PASS,
-  }
+  },
+  tls: { rejectUnauthorized: false } // For development only
 });
-
 
 const sendEmail = async (mailOptions, retries = 3) => {
   for (let i = 0; i < retries; i++) {
@@ -70,11 +61,11 @@ const sendEmail = async (mailOptions, retries = 3) => {
 };
 
 // Controllers
-exports.getLogin = (req, res) => {
+const getLogin = (req, res) => {
   res.render('pages/login', { message: null });
 };
 
-exports.postLogin = async (req, res) => {
+const postLogin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -108,15 +99,14 @@ exports.postLogin = async (req, res) => {
   }
 };
 
-exports.getSignup = (req, res) => {
+const getSignup = (req, res) => {
   res.render('pages/signup', { message: null });
 };
 
-exports.postSignup = async (req, res) => {
+const postSignup = async (req, res) => {
   const { name, email, password } = req.body;
 
   try {
-    // Validation
     if (!name || !email || !password) {
       return res.render('pages/signup', { message: 'All fields are required' });
     }
@@ -136,7 +126,6 @@ exports.postSignup = async (req, res) => {
       return res.render('pages/signup', { message: 'Email already registered' });
     }
 
-    // Create user
     const hashedPassword = await bcrypt.hash(password, saltRounds);
     const verificationToken = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
@@ -146,9 +135,8 @@ exports.postSignup = async (req, res) => {
       [name, normalizeEmail(email), hashedPassword, verificationToken]
     );
 
-    // Send verification email
     const verificationLink = `${BASE_URL}/verify-email?token=${verificationToken}`;
-    console.log('Debug - Verification Link:', verificationLink); // For debugging
+    console.log('Debug - Verification Link:', verificationLink);
     await sendEmail({
       from: `"Echoes of Time" <${process.env.EMAIL_USER}>`,
       to: email,
@@ -169,13 +157,14 @@ exports.postSignup = async (req, res) => {
     res.render('pages/login', { 
       message: 'Registration successful! Please check your email to verify your account.' 
     });
+
   } catch (error) {
     console.error('Signup error:', error);
     res.render('pages/signup', { message: 'Registration failed. Please try again.' });
   }
 };
 
-exports.verifyEmail = async (req, res) => {
+const verifyEmail = async (req, res) => {
   const { token } = req.query;
 
   try {
@@ -199,11 +188,11 @@ exports.verifyEmail = async (req, res) => {
   }
 };
 
-exports.getForgotPassword = (req, res) => {
+const getForgotPassword = (req, res) => {
   res.render('pages/forgot-password', { message: null });
 };
 
-exports.forgotPassword = async (req, res) => {
+const forgotPassword = async (req, res) => {
   const { email } = req.body;
 
   try {
@@ -243,11 +232,11 @@ exports.forgotPassword = async (req, res) => {
   }
 };
 
-exports.getResetPassword = (req, res) => {
+const getResetPassword = (req, res) => {
   res.render('pages/reset-password', { token: req.query.token, message: null });
 };
 
-exports.resetPassword = async (req, res) => {
+const resetPassword = async (req, res) => {
   const { token, newPassword } = req.body;
 
   try {
@@ -275,12 +264,26 @@ exports.resetPassword = async (req, res) => {
   }
 };
 
-exports.logout = (req, res) => {
+const logout = (req, res) => {
   res.clearCookie('jwt');
   res.redirect('/login');
 };
 
-// Verify email configuration on startup
+// Export all handlers correctly
+module.exports = {
+  getLogin,
+  postLogin,
+  getSignup,
+  postSignup,
+  verifyEmail,
+  getForgotPassword,
+  forgotPassword,
+  getResetPassword,
+  resetPassword,
+  logout
+};
+
+// Email config check
 transporter.verify((error) => {
   if (error) {
     console.error('❌ Email configuration error:', error);
