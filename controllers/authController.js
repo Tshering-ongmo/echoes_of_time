@@ -266,7 +266,7 @@ const resetPassword = async (req, res) => {
 
 const logout = (req, res) => {
   res.clearCookie('jwt');
-  res.redirect('/login');
+  res.redirect('/');
 };
 
 // Export all handlers correctly
